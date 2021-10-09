@@ -24,15 +24,12 @@ test_data_path = os.path.join(config['test_data_path'])
 model_path = os.path.join(config['output_model_path'])
 
 # Function to get model predictions
-def model_predictions():
+def model_predictions(my_file_path):
     '''
     Read in the deployed model and test dataset, calculate and return a list of predictions
     '''
-    # read in test data
-    test_data = pd.read_csv(os.path.join(
-        os.getcwd(),
-        test_data_path,
-        'testdata.csv'))
+    # read in the given file
+    test_data = pd.read_csv('.' + my_file_path)
 
     # read in the trained model
     with open(os.path.join(os.getcwd(), model_path,'trainedmodel.pkl'), 'rb') as f:
@@ -122,8 +119,8 @@ def outdated_packages_list():
 
 
 if __name__ == '__main__':
-    model_predictions()
-    dataframe_summary()
-    missing_values()
-    execution_time()
-    outdated_packages_list()
+    print(model_predictions('/testdata/testdata.csv'))
+    #dataframe_summary()
+    #missing_values()
+    #execution_time()
+    #outdated_packages_list()
